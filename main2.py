@@ -6,7 +6,10 @@ class Ingredient:
         self.unidad:Str = input("Introduce las unidades en las que se mide 'pza','rebanada':")
 
     def __str__(self):
-        return f' Ingrediente: {self.name}. Unidades: {self.author}'
+        return f' Ingrediente: {self.name}. Unidades: {self.unidad}'
+
+    def __repr__(self):
+        return self.__str__()
 
 class Recipe:
     def __init__(self, name:str, ingredients:list, quantities:list):
@@ -19,6 +22,9 @@ class Recipe:
 
     def __str__(self):
         return f' Nombre de la receta: {self.name}.'
+
+    def __repr__(self):
+        return self.__str__()
 
     def prepare_recipe(self):
         preparation = float(input("Que cantidad de receta deseas preparar?: "))
@@ -57,3 +63,15 @@ class RecipeBook:
             i=int(input("¿Continuar con las recetas? 1. Si 2. No: "))
         return self.listaRecetas
 
+########################################################################################
+#PRUEBAS
+
+recetario=RecipeBook()
+recetario.crearRecetario()
+print(recetario)
+print(recetario.listaRecetas)
+print(recetario.listaRecetas[0])
+
+print(recetario.listaRecetas[0].ingredients)
+print(recetario.listaRecetas[1])
+print(recetario.listaRecetas[1].ingredients)
