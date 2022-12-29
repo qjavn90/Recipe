@@ -2,8 +2,8 @@ import typing
 
 class Ingredient:
     def __init__(self):
-        self.name:Str = input("Ingrediente: ")
-        self.unidad:Str = input("Introduce las unidades en las que se mide 'pza','rebanada':")
+        self.name:str = input("Ingrediente: ")
+        self.unidad:str = input("Introduce las unidades en las que se mide 'pza','rebanada':")
 
     def __str__(self):
         return self.name
