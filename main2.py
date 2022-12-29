@@ -1,9 +1,8 @@
-import typing
-
+import copy
 class Ingredient:
-    def __init__(self):
-        self.name:Str = input("Ingrediente: ")
-        self.unidad:Str = input("Introduce las unidades en las que se mide 'pza','rebanada':")
+    def __init__(self, name:str='', unidad:str=''):
+        self.name:str = name
+        self.unidad:str = unidad
 
     def __str__(self):
         return self.name
@@ -11,17 +10,33 @@ class Ingredient:
     def __repr__(self):
         return f'Ingrediente: {self.name}'
 
+    def crearIngrediente(self):
+        self.name = input("Ingrediente: ")
+        self.unidad=input("Introduce las unidades en las que se mide 'pza','rebanada':")
+        return self
 class Recipe:
-    def __init__(self, name:str, ingredients:list, quantities:list):
-        self.name = name
-        self.ingredients = ingredients
-        self.quantities = quantities
+
+    def __init__(self,name='',ingredients=[], quantities=[]):
+        self.name=name
+        self.ingredients=ingredients
+        self.quantities=quantities
 
     def __str__(self):
         return f' Nombre de la receta: {self.name}.'
 
     def __repr__(self):
         return self.__str__()
+
+    def crearReceta(self):
+        self.name = input("¿Cual es el nombre de la receta?: ")
+        num_Ingredientes = input("Cuántos ingredientes tiene la receta?: ")
+        self.ingredients=[]
+        ingrediente = Ingredient()
+        for i in range(int(num_Ingredientes)):
+            ingrediente=ingrediente.crearIngrediente()
+            self.ingredients.append(copy.copy(ingrediente))
+            self.quantities.append(input("Cantidad: "))
+        return self
 
     def prepare_recipe(self):
         preparation = float(input("Que cantidad de receta deseas preparar?: "))
@@ -35,47 +50,79 @@ class Recipe:
         for i in range(len(self.ingredients)):
             print("Ingrediente: ", self.ingredients[i], "Cantidad: ", self.quantities[i])
 class RecipeBook:
-    def __init__(self):
-        self.name=input("Introduce el nombre del Recetario: ")
-        self.author=input("Introduce el autor del Recetario:")
+    def __init__(self,name='',author='',listaRecetas=[]):
+        self.name=name
+        self.author=author
+        self.listaRecetas=listaRecetas
 
     def __str__(self):
         return f' Título del recetario: {self.name}. Autor del recetario: {self.author}'
 
-    def crearReceta(self):
-        ingredientes, cantidades = [], []
-        nombreReceta = input("¿Cual es el nombre de la receta?: ")
-        num_Ingredientes = input("Cuántos ingredientes tiene la receta?: ")
-        for i in range(int(num_Ingredientes)):
-            ingrediente = Ingredient()
-            ingredientes.append(ingrediente)
-            cantidades.append(input("Cantidad: "))
-        receta = Recipe(nombreReceta, ingredientes, cantidades)
-        print(receta.ingredients)
-        print(receta.quantities)
-        return receta
-
     def crearRecetario(self):
-        self.listaRecetas=[]
-        i=1
+        self.name = input("Introduce el nombre del Recetario: ")
+        self.author = input("Introduce el autor del Recetario:")
+        receta = Recipe()
+        i = 1
         while i==1:
-            receta=self.crearReceta()
-            self.listaRecetas.append(receta)
+            receta.crearReceta()
+            self.listaRecetas.append(copy.copy(receta))
             i=int(input("¿Continuar con las recetas? 1. Si 2. No: "))
-        return self.listaRecetas
+        return self
+
+    def imprimeRecetario(self):
+        print(self)
+        for i in range(len(self.listaRecetas)):
+            self.listaRecetas[i].imprimeReceta()
 
 ########################################################################################
 #PRUEBAS
+###Crear un ingrediente
+###Podemos crear un ingrediente cuyos argumentos estén vacios
+
+#ingrediente=Ingredient()
+#print(ingrediente)
+
+###Podemos crear un ingrediente con los argumentos que queramos
+#ingrediente=Ingredient('Huevos','pza')
+#print(ingrediente)
+#print(ingrediente.name)
+#print(ingrediente.unidad)
+
+###Podemos modificar las propiedades del ingrediente, usando la funcion 'crearIngrediente'
+#ingrediente=Ingredient()
+#ingrediente.crearIngrediente()
+#print(ingrediente)
+#print(ingrediente.name)
+#print(ingrediente.unidad)
 
 ###Crear una receta
-ingredientes=["Huevos"]
-cantidades=[2]
-receta=Recipe("Huevos al Gusto",ingredientes,cantidades)
-receta.imprimeReceta()
+#Podemos crear una receta vacía
+#receta=Recipe()
+#print(receta)
 
-recetario=RecipeBook()
-recetario.crearRecetario()
-print(recetario)
-print(recetario.listaRecetas)
-print(recetario.listaRecetas[0].imprimeReceta())
+#Podemos crear una receta con los argumentos
+#nombreReceta='Huevos al gusto'
+#ingredientes=['Huevos']
+#cantidades=[2]
+#receta=Recipe(nombreReceta,ingredientes,cantidades)
+#print(receta.ingredients)
+#receta.imprimeReceta()
 
+#huevo=Ingredient('Huevos','pza')
+#ingredientes=[huevo]
+#receta=Recipe(nombreReceta,ingredientes,cantidades)
+#print(receta.ingredients)
+#receta.imprimeReceta()
+
+#Podemos crear una receta utilizando, la función 'crearReceta()'
+#receta=Recipe()
+#receta.crearReceta()
+#receta.imprimeReceta()
+#print(receta.ingredients)
+
+###Crear un recetario
+#recetario=RecipeBook()
+#recetario.crearRecetario()
+#recetario.imprimeRecetario()
+#print(recetario.listaRecetas)
+#print(recetario.listaRecetas[0])
