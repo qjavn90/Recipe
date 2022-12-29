@@ -6,19 +6,16 @@ class Ingredient:
         self.unidad:Str = input("Introduce las unidades en las que se mide 'pza','rebanada':")
 
     def __str__(self):
-        return f' Ingrediente: {self.name}.'
+        return self.name
 
     def __repr__(self):
-        return self.__str__()
+        return f'Ingrediente: {self.name}'
 
 class Recipe:
     def __init__(self, name:str, ingredients:list, quantities:list):
         self.name = name
         self.ingredients = ingredients
         self.quantities = quantities
-        self.lista_Ingredientes:list = []
-        for i in range(len(self.ingredients)):
-            self.lista_Ingredientes.append(self.ingredients[i].name)
 
     def __str__(self):
         return f' Nombre de la receta: {self.name}.'
@@ -33,6 +30,10 @@ class Recipe:
             print(self.ingredients[i].name + ": ", float(self.quantities[i]) * preparation, self.ingredients[i].unidad)
         print("Listo! La receta está preparada.")
 
+    def imprimeReceta(self):
+        print("Receta:", self.name)
+        for i in range(len(self.ingredients)):
+            print("Ingrediente: ", self.ingredients[i], "Cantidad: ", self.quantities[i])
 class RecipeBook:
     def __init__(self):
         self.name=input("Introduce el nombre del Recetario: ")
@@ -50,7 +51,7 @@ class RecipeBook:
             ingredientes.append(ingrediente)
             cantidades.append(input("Cantidad: "))
         receta = Recipe(nombreReceta, ingredientes, cantidades)
-        print(receta.lista_Ingredientes)
+        print(receta.ingredients)
         print(receta.quantities)
         return receta
 
@@ -66,12 +67,15 @@ class RecipeBook:
 ########################################################################################
 #PRUEBAS
 
+###Crear una receta
+ingredientes=["Huevos"]
+cantidades=[2]
+receta=Recipe("Huevos al Gusto",ingredientes,cantidades)
+receta.imprimeReceta()
+
 recetario=RecipeBook()
 recetario.crearRecetario()
 print(recetario)
 print(recetario.listaRecetas)
-print(recetario.listaRecetas[0])
+print(recetario.listaRecetas[0].imprimeReceta())
 
-print(recetario.listaRecetas[0].ingredients)
-print(recetario.listaRecetas[1])
-print(recetario.listaRecetas[1].ingredients)
