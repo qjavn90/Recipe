@@ -16,10 +16,16 @@ class Ingredient:
         return self
 class Recipe:
 
-    def __init__(self,name='',ingredients=[], quantities=[]):
-        self.name=name
-        self.ingredients=ingredients
-        self.quantities=quantities
+    def __init__(self, name='', ingredients=None, quantities=None):
+        self.name = name
+        if quantities is None:
+            self.quantities = []
+        else:
+            self.ingredients = ingredients
+        if ingredients is None:
+            self.ingredients = []
+        else:
+            self.quantities=quantities
 
     def __str__(self):
         return f' Nombre de la receta: {self.name}.'
@@ -50,11 +56,13 @@ class Recipe:
         for i in range(len(self.ingredients)):
             print("Ingrediente: ", self.ingredients[i], "Cantidad: ", self.quantities[i])
 class RecipeBook:
-    def __init__(self,name='',author='',listaRecetas=[]):
+    def __init__(self, name='', author='', listaRecetas=None):
         self.name=name
         self.author=author
-        self.listaRecetas=listaRecetas
-
+        if listaRecetas is None:
+            self.listaRecetas = []
+        else:
+            self.listaRecetas=listaRecetas
     def __str__(self):
         return f' Título del recetario: {self.name}. Autor del recetario: {self.author}'
 
