@@ -82,55 +82,66 @@ class RecipeBook:
         for i in range(len(self.listaRecetas)):
             self.listaRecetas[i].imprimeReceta()
 
-########################################################################################
-#PRUEBAS
-###Crear un ingrediente
-###Podemos crear un ingrediente cuyos argumentos estén vacios
+##################################################################################
+##################################################################################
+#######      PRUEBAS:ESTO SÓLO SE EJECUTARÁ AL USARSE DE MODO DIRECTO      #######
+#######      PARA TESTING UNICAMENTE.                                      #######
+##################################################################################
+##################################################################################
+def main():
+    print("Crear un ingrediente")
+    print("podemos crear un ingrediente cuyos argumentos estén vacios")
+    ingrediente=Ingredient()
+    print(ingrediente)
 
-#ingrediente=Ingredient()
-#print(ingrediente)
+    ###Podemos crear un ingrediente con los argumentos que queramos
+    #ingrediente=Ingredient('Huevos','pza')
+    #print(ingrediente)
+    #print(ingrediente.name)
+    #print(ingrediente.unidad)
 
-###Podemos crear un ingrediente con los argumentos que queramos
-#ingrediente=Ingredient('Huevos','pza')
-#print(ingrediente)
-#print(ingrediente.name)
-#print(ingrediente.unidad)
+    ###Podemos modificar las propiedades del ingrediente, usando la funcion 'crearIngrediente'
+    #ingrediente=Ingredient()
+    #ingrediente.crearIngrediente()
+    #print(ingrediente)
+    #print(ingrediente.name)
+    #print(ingrediente.unidad)
 
-###Podemos modificar las propiedades del ingrediente, usando la funcion 'crearIngrediente'
-#ingrediente=Ingredient()
-#ingrediente.crearIngrediente()
-#print(ingrediente)
-#print(ingrediente.name)
-#print(ingrediente.unidad)
+    print("Crear una receta")
+    print("Podemos crear una receta vacía")
+    receta=Recipe()
+    print(receta)
 
-###Crear una receta
-#Podemos crear una receta vacía
-#receta=Recipe()
-#print(receta)
+    #Podemos crear una receta con los argumentos
+    #nombreReceta='Huevos al gusto'
+    #ingredientes=['Huevos']
+    #cantidades=[2]
+    #receta=Recipe(nombreReceta,ingredientes,cantidades)
+    #print(receta.ingredients)
+    #receta.imprimeReceta()
 
-#Podemos crear una receta con los argumentos
-#nombreReceta='Huevos al gusto'
-#ingredientes=['Huevos']
-#cantidades=[2]
-#receta=Recipe(nombreReceta,ingredientes,cantidades)
-#print(receta.ingredients)
-#receta.imprimeReceta()
+    #huevo=Ingredient('Huevos','pza')
+    #ingredientes=[huevo]
+    #receta=Recipe(nombreReceta,ingredientes,cantidades)
+    #print(receta.ingredients)
+    #receta.imprimeReceta()
 
-#huevo=Ingredient('Huevos','pza')
-#ingredientes=[huevo]
-#receta=Recipe(nombreReceta,ingredientes,cantidades)
-#print(receta.ingredients)
-#receta.imprimeReceta()
+    #Podemos crear una receta utilizando, la función 'crearReceta()'
+    #receta=Recipe()
+    #receta.crearReceta()
+    #receta.imprimeReceta()
+    #print(receta.ingredients)
 
-#Podemos crear una receta utilizando, la función 'crearReceta()'
-#receta=Recipe()
-#receta.crearReceta()
-#receta.imprimeReceta()
-#print(receta.ingredients)
+    print("Crear un recetario")
+    print("Podemos crear un Recetario Vacío")
+    recetario=RecipeBook()
+    recetario.crearRecetario()
+    recetario.imprimeRecetario()
+    print(recetario.listaRecetas)
+    print(recetario.listaRecetas[0])
 
-###Crear un recetario
-#recetario=RecipeBook()
-#recetario.crearRecetario()
-#recetario.imprimeRecetario()
-#print(recetario.listaRecetas)
-#print(recetario.listaRecetas[0])
+if __name__=='__main__':
+    print("Modulo ejecutado de manera directa")
+    print('__name__',' ','==','','__main__')
+    main()
+
